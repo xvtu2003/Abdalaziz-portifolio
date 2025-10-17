@@ -1,0 +1,277 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Silkscreen:wght@400;700&display=swap');
+
+@theme {
+  /* Elegant Monochrome with Neon Accents */
+  --color-primary: #000000;         /* Pure Black */
+  --color-secondary: #00F0FF;       /* Electric Cyan */
+  --color-accent: #FF00AA;          /* Arcade Pink */
+  --color-highlight: #FFD600;       /* Power-Up Yellow */
+  --color-success: #00FF41;         /* Matrix Green */
+  --color-background: #000000;      /* Black Background */
+  --color-text: #FFFFFF;            /* Pure White */
+  --color-text-muted: #A0A0A0;      /* Gray */
+  --color-dark: #000000;            /* Pure Black */
+
+  /* Pixel Fonts */
+  --font-pixel: 'Press Start 2P', cursive;
+  --font-mono: 'VT323', monospace;
+  --font-heading: 'Silkscreen', cursive;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-mono);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  background-image:
+    linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .02) 25%, rgba(255, 255, 255, .02) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .02) 75%, rgba(255, 255, 255, .02) 76%, transparent 77%, transparent),
+    linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .02) 25%, rgba(255, 255, 255, .02) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .02) 75%, rgba(255, 255, 255, .02) 76%, transparent 77%, transparent);
+  background-size: 50px 50px;
+  position: relative;
+}
+
+/* Subtle Scanline Effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-pixel);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text);
+  transition: all 0.3s ease;
+}
+
+h1:hover, h2:hover, h3:hover {
+  text-shadow:
+    0 0 10px var(--color-secondary),
+    0 0 20px var(--color-secondary);
+}
+
+/* Elegant Button Styles */
+.btn-primary {
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  padding: 1rem 2rem;
+  background: transparent;
+  color: var(--color-text);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
+  transition: width 0.3s ease;
+  z-index: -1;
+}
+
+.btn-primary:hover {
+  color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-primary:hover::before {
+  width: 100%;
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  padding: 1rem 2rem;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  color: var(--color-text);
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Section Titles - Elegant Style */
+.section-title {
+  font-family: var(--font-pixel);
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  color: var(--color-text);
+  text-align: center;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-secondary), transparent);
+  transition: width 0.3s ease;
+}
+
+.section-title:hover::after {
+  width: 60%;
+}
+
+.section-title:hover {
+  text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+}
+
+/* Elegant Card/Panel Style */
+.card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.05), transparent);
+  transition: left 0.5s ease;
+  z-index: 0;
+}
+
+.card:hover::before {
+  left: 100%;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 240, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 240, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Neon Text Effects - Only on Hover */
+.text-gradient {
+  color: var(--color-text);
+  transition: all 0.3s ease;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-accent), var(--color-highlight));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.bg-gradient-primary {
+  background: var(--color-background);
+}
+
+/* Pixel Border Effect - Subtle */
+.pixel-border {
+  position: relative;
+  border: 0;
+}
+
+.pixel-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.2) 0 0) top/100% 1px no-repeat,
+    linear-gradient(rgba(255, 255, 255, 0.2) 0 0) bottom/100% 1px no-repeat,
+    linear-gradient(rgba(255, 255, 255, 0.2) 0 0) left/1px 100% no-repeat,
+    linear-gradient(rgba(255, 255, 255, 0.2) 0 0) right/1px 100% no-repeat;
+  transition: all 0.3s ease;
+}
+
+.pixel-border:hover::before {
+  background:
+    linear-gradient(var(--color-secondary) 0 0) top/100% 2px no-repeat,
+    linear-gradient(var(--color-secondary) 0 0) bottom/100% 2px no-repeat,
+    linear-gradient(var(--color-secondary) 0 0) left/2px 100% no-repeat,
+    linear-gradient(var(--color-secondary) 0 0) right/2px 100% no-repeat;
+}
+
+/* Blink Animation for Text */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.blink {
+  animation: blink 1s step-start infinite;
+}
+
+/* Subtle Glitch Effect */
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-1px, 1px); }
+  40% { transform: translate(-1px, -1px); }
+  60% { transform: translate(1px, 1px); }
+  80% { transform: translate(1px, -1px); }
+  100% { transform: translate(0); }
+}
+
+.glitch:hover {
+  animation: glitch 0.3s infinite;
+}

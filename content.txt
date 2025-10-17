@@ -1,0 +1,155 @@
+Abdalaziz Saierafi – Software Developer, Tech Team Lead, Founder of ITS, & Machine Learning Expert
+
+Contact Information
+Email: abdalazizsairfi@gmail.com
+
+Phone: (+963) 988122563 (Mobile)
+Location: Mazzeh, Syria
+LinkedIn: LinkedIn Profile
+ (Add if available)
+Facebook: abdalaziz.sairfi
+
+Website: ITS – International Tech Services
+
+About Me
+
+I am a passionate and results-driven software developer, AI/ML specialist, team leader, and entrepreneur. Currently, I serve as the Tech Team Lead and Manager of the IT Department at TechnoSolutions, where I lead a talented team and oversee the development of innovative projects. Additionally, I am the Founder of ITS (International Tech Services), a company dedicated to providing cutting-edge technology solutions.
+
+With a solid academic background in Informatic Engineering and Management Information Systems, along with practical experience in both leadership and technical roles, I bring a unique blend of skills to every project. I have successfully developed web and mobile applications, fine-tuned Large Language Models (LLMs), and managed tech teams to deliver high-quality products.
+
+I specialize in Vue.js, Node.js, Tailwind CSS, Machine Learning, and Full-Stack Development, and am always eager to learn and apply my expertise to new challenges. Whether leading teams or contributing as a developer, I am committed to creating impactful solutions.
+
+Skills & Expertise
+
+Web Development
+
+Frontend: Vue.js, Next.js, HTML5, CSS3, Tailwind CSS, Bootstrap, JavaScript
+
+Backend: Flask (Python), Node.js, Express.js
+
+E-Commerce: WooCommerce, Shopify, WordPress
+
+Mobile Development: Flutter
+
+Database Management: PostgreSQL, MySQL, SQLite
+
+Version Control: Git
+
+Machine Learning & AI
+
+Languages: Python, JavaScript
+
+Libraries & Frameworks: TensorFlow, PyTorch, scikit-learn
+
+Machine Learning Applications: Neural Networks, Text Classification, Recommendation Systems, Forecasting
+
+Large Language Models (LLMs): Fine-tuning and deploying models for natural language processing tasks
+
+Other AI Tools: Expert Systems, Rule-based Reasoning, Inference
+
+Leadership & Team Management
+
+Tech Team Lead: Managing a diverse team of developers, ensuring smooth project execution and aligning technical goals with business objectives.
+
+IT Department Manager: Overseeing IT operations, system optimization, and project coordination.
+
+Founder of ITS (International Tech Services): Leading a team that provides technology solutions for businesses, focusing on innovative software development, AI, and system integrations.
+
+Project Management: Experienced in leading cross-functional teams to deliver high-quality products within deadlines.
+
+Deployment & DevOps
+
+Server Management: Deploying applications and APIs to production environments
+
+Services: Heroku, AWS, DigitalOcean
+
+SMTP Integration: Email Delivery Systems
+
+Work Experience
+
+Founder & CEO | ITS (International Tech Services)
+2022 – Present | Damascus, Syria
+
+Founded ITS to provide top-tier technology services, including software development, machine learning solutions, and IT consulting.
+
+Built a strong team of developers and technical experts to deliver a wide range of IT solutions for clients across various industries.
+
+Focused on creating innovative products, such as AI-driven applications and custom software solutions for business optimization.
+
+Visit our website: ITS – International Tech Services
+
+Tech Team Lead & IT Department Manager | TechnoSolutions Company
+June 2023 – Present | Damascus, Syria
+
+Lead a tech team of developers, overseeing the development, testing, and deployment of various software projects.
+
+Manage all IT operations, ensuring smooth coordination between departments and timely delivery of projects.
+
+Contribute to the development of several high-profile websites and applications, including RTiraq.com.
+
+Developer | RTiraq
+March 2023 – Present | Damascus, Syria
+
+Contributed to the development of RTiraq.com, a dynamic and responsive website for the Iraqi market.
+
+Worked on both front-end and back-end development using Vue.js and Flask (Python) to build scalable web applications.
+
+Integrated key features such as user authentication, product listings, and third-party service integrations.
+
+Freelance Software Developer
+2019 – Present
+
+Developed mobile apps like Baby Care & Baby Bloom, focused on providing useful tools and tips for parents.
+
+Created several websites and e-commerce solutions, such as Mouhamina.com, Pharmagate.sy, and Co-Travel UAE.
+
+Fine-tuned Large Language Models (LLMs) for real-world natural language processing tasks, improving applications in recommendation systems, text classification, and forecasting.
+
+Syria's Financial Budgeting System (نظام الموازنة المالية السورية)
+2020 – 2021
+
+Worked on backend development for Syria’s national financial system, focusing on data management, system integrations, and performance optimization.
+
+Projects
+
+RTiraq.com
+
+Developed a modern, responsive website for the Iraqi market, focusing on user experience and seamless functionality. Integrated custom features such as product listings, user accounts, and secure payment systems.
+
+Baby Care & Baby Bloom Mobile Apps
+
+Built mobile applications designed to help parents with childcare, offering tools, advice, and essential information. Developed using Flutter for cross-platform support.
+
+Mouhamina.com
+
+A commercial platform for the Syrian market, featuring a responsive design, smooth navigation, and secure checkout system for online shopping.
+
+Pharmagate.sy
+
+Created a healthcare and pharmaceutical portal, focusing on ease of use, informative product listings, and a robust backend system for managing the inventory.
+
+Co-Travel UAE
+
+Developed a travel platform allowing users to find and book trips easily. Integrated dynamic listings, secure payment gateways, and interactive features.
+
+Syria's Financial Budgeting System
+
+Contributed to the development of Syria’s financial system, focusing on backend integrations and optimizing performance for large-scale data management.
+
+Education
+
+Arabic International University, Syria
+Informatic Engineering – Expected Graduation: 2025
+
+Syrian Virtual University
+Management Information Systems – Expected Graduation: 2025
+
+Language Proficiency
+
+Arabic: Native
+
+English: C1 (Proficient) – Speaking, Reading, Writing, and Listening
+
+Contact Me
+
+I am always open to new opportunities and collaborations. If you have a project in mind or would like to discuss how I can help bring your ideas to life, feel free to reach out!

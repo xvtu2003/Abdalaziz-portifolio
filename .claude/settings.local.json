@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(npm init -y)",
+      "Bash(npm install:*)",
+      "Bash(npx tailwindcss init:*)",
+      "Bash(npm run dev)",
+      "WebSearch",
+      "WebFetch(domain:unsplash.com)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
