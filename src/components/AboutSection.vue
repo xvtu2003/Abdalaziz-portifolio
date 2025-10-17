@@ -179,7 +179,7 @@
 import { ref } from 'vue'
 
 // Profile image
-const characterImage = ref('/src/assets/imges/portrait.jpg')
+const characterImage = ref('/images/portrait.jpg')
 
 const handleImageError = (e) => {
   // Fallback to placeholder if image fails to load
