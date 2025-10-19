@@ -1,25 +1,14 @@
 <template>
   <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
-    <!-- Subtle Dots Background -->
-    <div class="absolute inset-0">
-      <div v-for="n in 30" :key="n"
-           class="absolute w-1 h-1 rounded-full"
-           :style="{
-             top: `${Math.random() * 100}%`,
-             left: `${Math.random() * 100}%`,
-             background: 'rgba(255, 255, 255, 0.1)',
-             opacity: Math.random() * 0.5 + 0.2,
-             animation: `twinkle ${Math.random() * 4 + 3}s infinite`
-           }">
-      </div>
-    </div>
+    <!-- Particle Background -->
+    <ParticleBackground />
 
     <!-- Main Content - Elegant Minimal Style -->
     <div class="container mx-auto px-6 py-20 relative z-10">
       <div class="max-w-4xl mx-auto text-center space-y-8">
 
         <!-- Minimal Avatar -->
-        <div class="flex justify-center mb-6">
+        <div class="flex justify-center mb-6 animate-in">
           <div class="elegant-frame p-2">
             <img
               :src="profileImage"
@@ -43,7 +32,7 @@
 
         <!-- Job Title -->
         <div class="text-lg md:text-2xl" style="font-family: var(--font-mono); letter-spacing: 0.1em; color: rgba(255, 255, 255, 0.7);">
-          <div class="typing-text">DEVELOPER █</div>
+          <div class="typing-text">{{ typedText }}<span class="cursor">█</span></div>
           <div class="mt-2" style="color: rgba(255, 255, 255, 0.5);">AI SPECIALIST • TECH LEADER • FOUNDER</div>
         </div>
 
@@ -108,15 +97,64 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
+import ParticleBackground from './ParticleBackground.vue'
 
 // Profile image
 const profileImage = ref('/images/hero.jpg')
+
+// Typing animation
+const typedText = ref('')
+const phrases = ['DEVELOPER', 'FULL-STACK DEV', 'AI SPECIALIST', 'TECH LEADER']
+let currentPhraseIndex = 0
+let currentCharIndex = 0
+let isDeleting = false
+let typingTimeout = null
+
+const type = () => {
+  const currentPhrase = phrases[currentPhraseIndex]
+
+  if (!isDeleting) {
+    // Typing
+    typedText.value = currentPhrase.substring(0, currentCharIndex + 1)
+    currentCharIndex++
+
+    if (currentCharIndex === currentPhrase.length) {
+      // Pause at end of phrase
+      isDeleting = true
+      typingTimeout = setTimeout(type, 2000)
+      return
+    }
+  } else {
+    // Deleting
+    typedText.value = currentPhrase.substring(0, currentCharIndex - 1)
+    currentCharIndex--
+
+    if (currentCharIndex === 0) {
+      isDeleting = false
+      currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length
+      typingTimeout = setTimeout(type, 500)
+      return
+    }
+  }
+
+  typingTimeout = setTimeout(type, isDeleting ? 50 : 100)
+}
 
 const handleImageError = (e) => {
   // Fallback to placeholder if image fails to load
   e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"%3E%3Crect width="256" height="256" fill="%231A0B2E"/%3E%3Crect x="64" y="32" width="128" height="32" fill="%2300F0FF"/%3E%3Crect x="48" y="64" width="160" height="32" fill="%2300F0FF"/%3E%3Crect x="32" y="96" width="192" height="64" fill="%2300F0FF"/%3E%3Crect x="48" y="160" width="160" height="32" fill="%2300F0FF"/%3E%3Crect x="64" y="192" width="128" height="32" fill="%2300F0FF"/%3E%3Crect x="80" y="80" width="32" height="32" fill="%23000"/%3E%3Crect x="144" y="80" width="32" height="32" fill="%23000"/%3E%3Crect x="96" y="128" width="64" height="16" fill="%23FF00AA"/%3E%3Ctext x="128" y="240" font-family="monospace" font-size="24" fill="%23FFD600" text-anchor="middle"%3EAS%3C/text%3E%3C/svg%3E'
 }
+
+onMounted(() => {
+  setTimeout(type, 500)
+})
+
+onUnmounted(() => {
+  if (typingTimeout) {
+    clearTimeout(typingTimeout)
+  }
+})
 </script>
 
 <style scoped>
@@ -187,9 +225,18 @@ const handleImageError = (e) => {
   filter: contrast(1.1) saturate(1.1);
 }
 
-.typing-text::after {
-  content: '';
+.typing-text {
+  display: inline-block;
+  min-height: 1.2em;
+}
+
+.cursor {
   animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 @keyframes twinkle {

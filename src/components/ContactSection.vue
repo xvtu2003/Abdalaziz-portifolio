@@ -2,18 +2,18 @@
   <section id="contact" class="py-20 relative overflow-hidden">
     <div class="container mx-auto px-6">
       <!-- Section Title -->
-      <h2 class="section-title">
+      <h2 class="section-title" ref="titleRef">
         CONTACT
       </h2>
 
-      <p class="text-center mb-12" style="font-family: var(--font-mono); font-size: 1.1rem; color: rgba(255, 255, 255, 0.6);">
+      <p class="text-center mb-8 md:mb-12 text-sm sm:text-base md:text-lg px-4" ref="subtitleRef" style="font-family: var(--font-mono); color: rgba(255, 255, 255, 0.6);">
         Let's Build Something Great Together
       </p>
 
-      <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-6 md:gap-12 max-w-6xl mx-auto">
         <!-- Contact Info -->
-        <div class="contact-card">
-          <h3 class="text-xl mb-6" style="font-family: var(--font-pixel);">
+        <div class="contact-card" ref="leftCardRef">
+          <h3 class="text-lg sm:text-xl mb-6" style="font-family: var(--font-pixel);">
             GET IN TOUCH
           </h3>
 
@@ -63,7 +63,7 @@
                 </div>
                 <div>
                   <p class="text-xs mb-1" style="font-family: var(--font-pixel); color: rgba(255, 255, 255, 0.5);">LOCATION</p>
-                  <p class="text-text" style="font-family: var(--font-mono);">
+                  <p class="text-text text-sm sm:text-base" style="font-family: var(--font-mono);">
                     Mazzeh, Damascus, Syria
                   </p>
                 </div>
@@ -74,7 +74,7 @@
           <!-- Social Links -->
           <div class="mt-8 pt-6 border-t" style="border-color: rgba(255, 255, 255, 0.1);">
             <p class="text-xs mb-4" style="font-family: var(--font-pixel); color: rgba(255, 255, 255, 0.5);">CONNECT</p>
-            <div class="flex gap-4">
+            <div class="flex flex-wrap gap-3 sm:gap-4">
                 <a
                   href="https://www.linkedin.com/in/abdalaziz-saierafi"
                   target="_blank"
@@ -110,8 +110,8 @@
         </div>
 
         <!-- Message Form -->
-        <div class="contact-card">
-          <h3 class="text-xl mb-6" style="font-family: var(--font-pixel);">
+        <div class="contact-card" ref="rightCardRef">
+          <h3 class="text-lg sm:text-xl mb-6" style="font-family: var(--font-pixel);">
             SEND MESSAGE
           </h3>
 
@@ -208,7 +208,7 @@
       </div>
 
       <!-- Footer -->
-      <div class="mt-20 text-center">
+      <div class="mt-12 md:mt-20 text-center">
         <div class="inline-block footer-credits">
           <div class="text-xs mb-3" style="font-family: var(--font-pixel); color: rgba(255, 255, 255, 0.5);">
             BUILT WITH
@@ -224,7 +224,13 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useScrollAnimation } from '../composables/useScrollAnimation'
+
+const titleRef = ref(null)
+const subtitleRef = ref(null)
+const leftCardRef = ref(null)
+const rightCardRef = ref(null)
 
 const form = ref({
   name: '',
@@ -262,6 +268,15 @@ const handleSubmit = async () => {
     }, 5000)
   }, 1500)
 }
+
+onMounted(() => {
+  const { observe } = useScrollAnimation()
+
+  if (titleRef.value) observe(titleRef.value)
+  if (subtitleRef.value) observe(subtitleRef.value)
+  if (leftCardRef.value) observe(leftCardRef.value)
+  if (rightCardRef.value) observe(rightCardRef.value)
+})
 </script>
 
 <style scoped>
@@ -269,8 +284,14 @@ const handleSubmit = async () => {
 .contact-card {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 2rem;
+  padding: 1.5rem;
   transition: all 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .contact-card {
+    padding: 2rem;
+  }
 }
 
 .contact-card:hover {
@@ -281,10 +302,16 @@ const handleSubmit = async () => {
 
 /* Contact Items */
 .contact-item {
-  padding: 1rem;
+  padding: 0.75rem;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .contact-item {
+    padding: 1rem;
+  }
 }
 
 .contact-item:hover {
@@ -295,8 +322,8 @@ const handleSubmit = async () => {
 
 /* Contact Icon */
 .contact-icon {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
@@ -304,6 +331,13 @@ const handleSubmit = async () => {
   justify-content: center;
   flex-shrink: 0;
   transition: all 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .contact-icon {
+    width: 48px;
+    height: 48px;
+  }
 }
 
 .contact-item:hover .contact-icon {
@@ -321,6 +355,15 @@ const handleSubmit = async () => {
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   transition: all 0.2s ease;
+  word-break: break-all;
+  font-size: 0.875rem;
+}
+
+@media (min-width: 640px) {
+  .contact-link {
+    font-size: 1rem;
+    word-break: normal;
+  }
 }
 
 .contact-link:hover {
@@ -330,8 +373,8 @@ const handleSubmit = async () => {
 
 /* Social Buttons */
 .social-btn {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -339,6 +382,13 @@ const handleSubmit = async () => {
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: rgba(255, 255, 255, 0.7);
   transition: all 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .social-btn {
+    width: 48px;
+    height: 48px;
+  }
 }
 
 .social-btn:hover {
@@ -364,12 +414,19 @@ const handleSubmit = async () => {
 .form-input {
   font-family: var(--font-mono);
   width: 100%;
-  padding: 0.75rem 1rem;
+  padding: 0.625rem 0.875rem;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: var(--color-text);
-  font-size: 1rem;
+  font-size: 0.875rem;
   transition: all 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .form-input {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
 }
 
 .form-input:focus {
@@ -388,8 +445,14 @@ const handleSubmit = async () => {
 .footer-credits {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1.5rem 2rem;
+  padding: 1rem 1.5rem;
   transition: all 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .footer-credits {
+    padding: 1.5rem 2rem;
+  }
 }
 
 .footer-credits:hover {

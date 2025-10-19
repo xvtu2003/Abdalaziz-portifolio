@@ -1,5 +1,8 @@
 <template>
   <div id="app" class="relative">
+    <!-- Custom Cursor -->
+    <CustomCursor />
+
     <!-- Navigation -->
     <NavigationBar />
 
@@ -112,6 +115,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue'
+import CustomCursor from './components/CustomCursor.vue'
 import NavigationBar from './components/NavigationBar.vue'
 import HeroSection from './components/HeroSection.vue'
 import AboutSection from './components/AboutSection.vue'

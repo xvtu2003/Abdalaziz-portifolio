@@ -2,11 +2,11 @@
   <section id="experience" class="py-20 relative overflow-hidden">
     <div class="container mx-auto px-6">
       <!-- Section Title -->
-      <h2 class="section-title">
+      <h2 class="section-title" ref="titleRef">
         EXPERIENCE
       </h2>
 
-      <p class="text-center mb-12" style="font-family: var(--font-mono); font-size: 1.1rem; color: rgba(255, 255, 255, 0.6);">
+      <p class="text-center mb-12" ref="subtitleRef" style="font-family: var(--font-mono); font-size: 1.1rem; color: rgba(255, 255, 255, 0.6);">
         Professional Journey & Achievements
       </p>
 
@@ -43,6 +43,7 @@
                 'ml-20 md:ml-0',
                 index % 2 === 0 ? 'md:mr-16' : 'md:ml-16'
               ]"
+              :ref="el => { if (el) experienceRefs[quest.id] = el }"
             >
               <div class="experience-card">
                 <!-- Header -->
@@ -176,6 +177,24 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
+import { useScrollAnimation } from '../composables/useScrollAnimation'
+
+const titleRef = ref(null)
+const subtitleRef = ref(null)
+const experienceRefs = ref({})
+
+onMounted(() => {
+  const { observe } = useScrollAnimation()
+
+  if (titleRef.value) observe(titleRef.value)
+  if (subtitleRef.value) observe(subtitleRef.value)
+
+  Object.values(experienceRefs.value).forEach(el => {
+    if (el) observe(el)
+  })
+})
+
 const quests = [
   {
     id: 1,
@@ -256,17 +275,17 @@ const quests = [
     title: 'NATIONAL SYSTEM QUEST',
     company: "Syria's Financial Budgeting System",
     date: '2020 – 2021',
-    badge: 'BACKEND',
+    badge: 'FRONTEND',
     icon: '🏛️',
     markerColor: 'var(--color-secondary)',
-    description: "Worked on the backend infrastructure for Syria's national financial system - a critical mission with nation-level impact.",
+    description: "Contributed to Syria's national financial system - working on front-end tasks during the MVC implementation phase.",
     objectives: [
-      'Engineered backend systems and data management',
-      'Developed system integrations and API architecture',
-      'Optimized performance for large-scale data operations',
-      'Designed robust database architecture'
+      'Worked on front-end implementation tasks',
+      'Developed UI components during MVC phase',
+      'Implemented views and user interfaces',
+      'Integrated front-end with system architecture'
     ],
-    technologies: ['Python', 'PostgreSQL', 'Flask', 'Integration'],
+    technologies: ['Python', 'MVC', 'Flask', 'Frontend'],
     xp: '6500'
   }
 ]

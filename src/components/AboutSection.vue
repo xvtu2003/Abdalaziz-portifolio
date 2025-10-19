@@ -2,13 +2,13 @@
   <section id="about" class="py-20 relative overflow-hidden">
     <div class="container mx-auto px-6">
       <!-- Section Title -->
-      <h2 class="section-title">
+      <h2 class="section-title" ref="titleRef">
         ABOUT
       </h2>
 
       <div class="grid md:grid-cols-2 gap-12 items-start mb-16">
         <!-- Character Card -->
-        <div class="relative">
+        <div class="relative" ref="leftCardRef">
           <div class="card">
             <!-- Portrait -->
             <div class="relative mb-6">
@@ -45,13 +45,13 @@
 
             <!-- Stats -->
             <div class="grid grid-cols-2 gap-4 mt-6">
-              <div class="stat-box-elegant-small">
+              <div class="stat-box-elegant-small" ref="experienceStatRef">
                 <div class="text-xs mb-1" style="font-family: var(--font-pixel); color: rgba(255, 255, 255, 0.5);">EXPERIENCE</div>
-                <div class="text-3xl" style="font-family: var(--font-pixel);">5Y+</div>
+                <div class="text-3xl" style="font-family: var(--font-pixel);">{{ experienceCount }}Y+</div>
               </div>
-              <div class="stat-box-elegant-small">
+              <div class="stat-box-elegant-small" ref="projectsStatRef">
                 <div class="text-xs mb-1" style="font-family: var(--font-pixel); color: rgba(255, 255, 255, 0.5);">PROJECTS</div>
-                <div class="text-3xl" style="font-family: var(--font-pixel);">20+</div>
+                <div class="text-3xl" style="font-family: var(--font-pixel);">{{ projectsCount }}+</div>
               </div>
             </div>
 
@@ -65,7 +65,7 @@
         </div>
 
         <!-- Bio & Attributes -->
-        <div class="space-y-6">
+        <div class="space-y-6" ref="rightCardRef">
           <!-- Bio Text -->
           <div class="card">
             <h3 class="text-xl mb-4" style="font-family: var(--font-pixel);">
@@ -176,15 +176,74 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useScrollAnimation } from '../composables/useScrollAnimation'
 
 // Profile image
 const characterImage = ref('/images/portrait.jpg')
+
+// Refs for scroll animations
+const titleRef = ref(null)
+const leftCardRef = ref(null)
+const rightCardRef = ref(null)
+const experienceStatRef = ref(null)
+const projectsStatRef = ref(null)
+
+// Counter animations
+const experienceCount = ref(0)
+const projectsCount = ref(0)
 
 const handleImageError = (e) => {
   // Fallback to placeholder if image fails to load
   e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 320"%3E%3Crect width="256" height="320" fill="%231A0B2E"/%3E%3Crect x="64" y="40" width="128" height="240" fill="%2300F0FF" opacity="0.2"/%3E%3Crect x="80" y="60" width="96" height="32" fill="%2300F0FF"/%3E%3Crect x="96" y="92" width="64" height="16" fill="%23000"/%3E%3Crect x="80" y="108" width="96" height="80" fill="%2300F0FF"/%3E%3Crect x="64" y="188" width="128" height="64" fill="%23FF00AA"/%3E%3Crect x="80" y="252" width="40" height="28" fill="%2300F0FF"/%3E%3Crect x="136" y="252" width="40" height="28" fill="%2300F0FF"/%3E%3Crect x="104" y="120" width="16" height="16" fill="%23000"/%3E%3Crect x="136" y="120" width="16" height="16" fill="%23000"/%3E%3Crect x="104" y="148" width="48" height="8" fill="%23FFD600"/%3E%3C/svg%3E'
 }
+
+const animateCounter = (target, endValue, duration = 2000) => {
+  const startTime = Date.now()
+
+  const updateCounter = () => {
+    const currentTime = Date.now()
+    const elapsed = currentTime - startTime
+    const progress = Math.min(elapsed / duration, 1)
+
+    // Easing function
+    const easeOutQuad = progress * (2 - progress)
+    target.value = Math.floor(easeOutQuad * endValue)
+
+    if (progress < 1) {
+      requestAnimationFrame(updateCounter)
+    } else {
+      target.value = endValue
+    }
+  }
+
+  updateCounter()
+}
+
+onMounted(() => {
+  const { observe } = useScrollAnimation()
+
+  // Observe elements for scroll animations
+  if (titleRef.value) observe(titleRef.value)
+  if (leftCardRef.value) observe(leftCardRef.value)
+  if (rightCardRef.value) observe(rightCardRef.value)
+
+  // Setup counter animation observer
+  const statsObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && experienceCount.value === 0) {
+          animateCounter(experienceCount, 5, 1500)
+          animateCounter(projectsCount, 20, 2000)
+          statsObserver.unobserve(entry.target)
+        }
+      })
+    },
+    { threshold: 0.5 }
+  )
+
+  if (experienceStatRef.value) statsObserver.observe(experienceStatRef.value)
+})
 </script>
 
 <script>
